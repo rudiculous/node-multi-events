@@ -1,0 +1,26 @@
+{
+  "name": "@rdcl/multi-events",
+  "version": "1.0.0",
+  "description": "An extension on the built-in events object, that allows passing multiple events.",
+  "main": "index.js",
+  "scripts": {
+    "cover": "istanbul cover _mocha -- -R spec test/*",
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudiculous/node-multi-events.git"
+  },
+  "author": "RJ van der Weide <rj@rdcl.nl> (https://rdcl.nl/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rudiculous/node-multi-events/issues"
+  },
+  "homepage": "https://github.com/rudiculous/node-multi-events#readme",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "coveralls": "^2.11.6",
+    "istanbul": "^0.4.1",
+    "mocha": "^2.3.4"
+  }
+}
