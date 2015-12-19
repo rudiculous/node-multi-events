@@ -15,8 +15,7 @@ const EventEmitter = require('@rdcl/multi-events')
 ```
 
 For the rest the usage is identical to [Node.js Events](https://nodejs.org/api/events.html), except
-that everywhere an event is accepted as an argument, you may now also pass an array of events (with
-the exception of emit, because that did not make sense).
+that everywhere an event is accepted as an argument, you may now also pass an array of events.
 
 ## Example
 ```javascript
@@ -35,11 +34,9 @@ ev.emit('event2', 'This is event2.')
 
 ev.on(['event1', 'event2', 'event3'], console.log)
 ev.removeListener(['event1', 'event2'], console.log)
-ev.emit('event1', 'This is event1.')
-ev.emit('event2', 'This is event2.')
-ev.emit('event3', 'This is event3.')
+ev.emit(['event1', 'event2', 'event3'], 'This is an event.')
 // Prints:
-// This is event3.
+// This is an event.
 ```
 
 ## Tests

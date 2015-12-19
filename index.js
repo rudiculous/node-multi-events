@@ -13,6 +13,10 @@ class MultiEventEmitter extends events.EventEmitter {
     splitAndApply(this, super.addListener, arguments)
   }
 
+  emit(events, listener) {
+    splitAndApply(this, super.emit, arguments)
+  }
+
   on(events, listener) {
     splitAndApply(this, super.on, arguments)
   }
@@ -38,20 +42,14 @@ exports.MultiEventEmitter = MultiEventEmitter
 
 
 function splitAndApply(ctx, method, args) {
-  args = Array.from(args)
-
-  if (args.length > 0) {
+  if (args.length === 0 || typeof(args[0]) === 'string') {
+    method.apply(ctx, args)
+  }
+  else {
     const events = args[0]
-
-    if (typeof(events) === 'string') {
-      method.apply(ctx, args)
-    }
-    else for (const event of Array.from(events)) {
+    for (const event of events) {
       args[0] = event
       method.apply(ctx, args)
     }
-  }
-  else {
-    method.apply(ctx, args)
   }
 }
