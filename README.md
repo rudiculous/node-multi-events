@@ -11,7 +11,35 @@ An extension on the built-in events object, that allows passing multiple events.
 
 ## Usage
 ```javascript
-const multiEvents = require('@rdcl/multi-events')
+const EventEmitter = require('@rdcl/multi-events')
+```
+
+For the rest the usage is identical to [Node.js Events](https://nodejs.org/api/events.html), except
+that everywhere an event is accepted as an argument, you may now also pass an array of events (with
+the exception of emit, because that did not make sense).
+
+## Example
+```javascript
+'use strict'
+
+const EventEmitter = require('@rdcl/multi-events')
+const ev = new EventEmitter()
+
+ev.once(['event1', 'event2'], console.log)
+ev.emit('event1', 'This is event1.')
+ev.emit('event1', 'This is event1 again.')
+ev.emit('event2', 'This is event2.')
+// Prints:
+// This is event1.
+// This is event2.
+
+ev.on(['event1', 'event2', 'event3'], console.log)
+ev.removeListener(['event1', 'event2'], console.log)
+ev.emit('event1', 'This is event1.')
+ev.emit('event2', 'This is event2.')
+ev.emit('event3', 'This is event3.')
+// Prints:
+// This is event3.
 ```
 
 ## Tests
